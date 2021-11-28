@@ -29,10 +29,40 @@ const db = mysql.createConnection(
   console.log("connected to the election database")
 );
 
-// query of the database to test connection 
-db.query(`SELECT * FROM candidates`, (err, rows) => {
-  console.log('this is the log' ,rows);
+// query of the database to test connection - basically a getAll
+// db.query(`SELECT * FROM candidates`, (err, rows) => {
+//   console.log('this is the log' ,rows);
+// });
+
+// Get one 
+db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(row);
 });
+
+// delete 
+db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(result);
+});
+
+// create 
+const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
+              VALUES (?,?,?,?)`;
+const params = [1, 'Ronald', 'Firbank', 1];
+
+db.query(sql, params, (err, result) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(result);
+});
+
+
 
 // test route / example route - No longer needed.
 // app.get('/', (req, res) => {
