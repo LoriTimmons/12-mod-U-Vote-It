@@ -4,5 +4,5 @@
 // Next, create tables in see 12.1.4
 // Then populate data into the table. See 12.1.5  
 
-// 12.1.5
+// 12.2.2
 
